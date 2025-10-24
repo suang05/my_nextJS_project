@@ -1,4 +1,4 @@
-// app/layout.tsx (ตัวอย่างถูกต้อง)
+import '@/app/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (

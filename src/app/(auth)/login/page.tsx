@@ -20,16 +20,16 @@ export default function LoginPage() {
     setLoading(true);
     console.log('start get');
 
-    // const response = await axios.get('http://localhost:8080/React_Webpage2/api/users', {
-    //       // 🔑 สำคัญ: ตั้งค่า withCredentials เป็น true เพื่อให้ axios ส่ง Cookies/Credentials ไปด้วย
-    //       // ซึ่งจำเป็นเมื่อ Backend (Spring) ตั้งค่า allowCredentials(true)
-    //       withCredentials: true,
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         // สามารถเพิ่ม Header อื่นๆ เช่น Authorization Token ที่นี่ได้
-    //       },
-    //     });
-    //     console.log('start post');
+    const response = await axios.get('http://localhost:8080/React_Webpage2/api/users', {
+          // 🔑 สำคัญ: ตั้งค่า withCredentials เป็น true เพื่อให้ axios ส่ง Cookies/Credentials ไปด้วย
+          // ซึ่งจำเป็นเมื่อ Backend (Spring) ตั้งค่า allowCredentials(true)
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            // สามารถเพิ่ม Header อื่นๆ เช่น Authorization Token ที่นี่ได้
+          },
+        });
+        console.log('start post');
     // 🔴 1. เรียก API Route (ที่จำลองการตั้งค่า HTTP-Only Cookie)
     const res = await fetch('http://localhost:8080/React_Webpage2/api/login', {
       method: 'POST',

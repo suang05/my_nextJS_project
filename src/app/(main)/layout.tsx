@@ -1,13 +1,14 @@
 // app/(main)/layout.tsx
 
-import { Navbar } from "@/components/Navbar";
+// import { Navbar } from "@/components/Navbar";
 
 // import Navbar from '@/components/Navbar'; // สมมติว่าสร้าง component นี้แล้ว
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar />
+      <MyNavbar />
+      {/* <Navbar /> */}
       <div style={{ display: 'flex', minHeight: 'calc(100vh - 60px)' }}>
         <Sidebar />
         <main>{children}</main>
@@ -16,11 +17,38 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   );
 }
 
+function MyNavbar() {
+    return (
+        <header className="px-4 bg-gray-800">
+            <nav className="flex justify-between items-center">
+              <div className="flex-1 bg-gray-800 py-4 text-white">
+                logo
+              </div>
+              <div className="flex gap-4 py-4 bg-gray-800 text-white">
+                  <a href="#" className="">Home</a>
+                  <a href="#">About</a>
+                  <a href="#">Contact</a>
+              </div>
+              <div className="flex flex-1 justify-end gap-4 bg-gray-800 py-4 text-white">
+                <div>
+                  username
+                </div>
+                <div className="h-6 w-px bg-gray-950/10 dark:bg-white/10"></div>
+                <a href="#" className="">logout</a>
+              </div>
+            </nav>
+        </header>
+    );
+}
+
 // 💡 Navbar Component (ตัวอย่าง)
 // function Navbar() {
 //     return (
 //         <header style={{ padding: '15px 20px', backgroundColor: '#333', color: 'white' }}>
-//             <h1>My App Dashboard</h1>
+//             <h1 style={{ display: 'block', fontSize: '1.5em', marginBlockStart: '0.67em', marginBlockEnd: '0.67em', }}>
+//               My App Dashboard
+//             </h1>
+
 //         </header>
 //     );
 // }

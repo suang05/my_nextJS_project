@@ -1,6 +1,3 @@
-// app/(auth)/login/page.tsx
-// ใช้ 'use client' ถ้าต้องการจัดการ state หรือ event ภายในฟอร์ม
-
 "use client";
 
 import axios from 'axios';
@@ -8,33 +5,31 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+// ✅ 1. กำหนด LoginData Model/Interface เพื่อความชัดเจนของโครงสร้างข้อมูล
+interface LoginData {
+  username: string;
+  password: string;
+}
+
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const router = useRouter();
 
+  const loginPayload: LoginData = { username, password };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    console.log('start get');
+    console.log('loginPayload ', loginPayload);
 
-    const response = await axios.get('http://localhost:8080/React_Webpage2/api/users', {
-          // 🔑 สำคัญ: ตั้งค่า withCredentials เป็น true เพื่อให้ axios ส่ง Cookies/Credentials ไปด้วย
-          // ซึ่งจำเป็นเมื่อ Backend (Spring) ตั้งค่า allowCredentials(true)
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-            // สามารถเพิ่ม Header อื่นๆ เช่น Authorization Token ที่นี่ได้
-          },
-        });
-        console.log('start post');
     // 🔴 1. เรียก API Route (ที่จำลองการตั้งค่า HTTP-Only Cookie)
     const res = await fetch('http://localhost:8080/React_Webpage2/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ /* ส่ง username/password */ }),
+      body: JSON.stringify(loginPayload),
       credentials: 'include',
     });
     console.log(res);
@@ -42,7 +37,6 @@ export default function LoginPage() {
         console.log("Cookie has been set by API Route (simulating Java Server).");
         // 2. Redirect ไปที่ / (Middleware จะจับและส่งไป /dashboard)
         router.replace('/dashboard'); 
-        // window.location.href = '/';
     } else {
         alert("Login Failed.");
     }
@@ -67,13 +61,13 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '20px' }}>
           <label htmlFor="email" style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
-            อีเมล
+            ผู้ใช้งาน
           </label>
           <input
             id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             style={{ 
               width: '100%', 

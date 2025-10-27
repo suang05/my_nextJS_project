@@ -1,6 +1,7 @@
 // components/Sidebar.tsx
 'use client';
 
+import { useMyContext } from '@/context/loginContext';
 import Link from 'next/link';
 
 const PRIMARY_ORANGE_CLASS = 'text-orange-600';
@@ -20,6 +21,8 @@ const Sidebar = () => {
         { type: 'link', name: 'จัดการผู้ใช้', iconPath: "M17 20h-4v-4h-2v4H7a2 2 0 01-2-2V7a2 2 0 012-2h4v4h2V5h4a2 2 0 012 2v11a2 2 0 01-2 2z", active: false },
         { type: 'link', name: 'ตั้งค่าระบบ', iconPath: "M10.325 4.317c.426-1.782 2.744-1.782 3.17 0C14.85 5.767 15.688 7.375 18 7.375s3.15-1.608 4.675-3.058c.426-1.782 2.744-1.782 3.17 0A16 16 0 0124 12c0 1.625-.838 3.233-2.325 4.675c-.426 1.782-2.744 1.782-3.17 0A16 16 0 0112 24c-1.625 0-3.233-.838-4.675-2.325c-1.782-.426-1.782-2.744 0-3.17A16 16 0 010 12c0-1.625.838-3.233 2.325-4.675c.426-1.782 2.744-1.782 3.17 0A16 16 0 0112 0z", active: false },
     ];
+
+    const { name } = useMyContext();
     
     return (
         <aside 
@@ -65,47 +68,3 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
-
-
-
-// export default function Sidebar() {
-//   // ความกว้างของ Sidebar
-//     const widthClass = "w-64"; 
-
-//     return (
-//         <div
-//         className={`hidden flex-shrink-0 flex-col border-r border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 md:flex ${widthClass}`}
-//         >
-//         <nav className="flex flex-col space-y-2">
-//             <h3 className="mb-2 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
-//             Menu
-//             </h3>
-            
-//             {/* รายการเมนู */}
-//             <Link 
-//             href="/dashboard"
-//             className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
-//             >
-//             {/*  */}
-//             Dashboard
-//             </Link>
-//             <Link 
-//             href="/users"
-//             className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
-//             >
-//             {/*  */}
-//             Users
-//             </Link>
-//             <Link 
-//             href="/products"
-//             className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
-//             >
-//             {/*  */}
-//             Products
-//             </Link>
-            
-//             {/* สามารถเพิ่มส่วนอื่น ๆ เช่น Footer ของ Sidebar ได้ */}
-//         </nav>
-//         </div>
-//     );
-// }

@@ -3,13 +3,16 @@
 import Header from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 
-// import Navbar from '@/components/Navbar'; // สมมติว่าสร้าง component นี้แล้ว
-
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+  const currentUser = {
+    name: "สมชาย ใจดี",
+    role: "แอดมิน",
+    initials: "ส.จ."
+  };
+
   return (
     <>
-      <Header />
-      {/* <Navbar /> */}
+      <Header user={currentUser}/> 
       <div style={{ display: 'flex', minHeight: 'calc(100vh - 60px)' }}>
         <Sidebar/>
         <main>{children}</main>

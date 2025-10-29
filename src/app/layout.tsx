@@ -1,4 +1,4 @@
-import '@/app/globals.css';
+import '@/globals.css';
 import { MyProvider } from '@/context/loginContext';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

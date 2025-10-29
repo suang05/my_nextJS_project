@@ -1,11 +1,15 @@
-// app/(main)/layout.tsx
 "use client";
 
-// import Header from "@/components/Navbar";
 import Header from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Sarabun } from 'next/font/google';
+
+const sarabun = Sarabun({ 
+  weight: ['400', '700'], 
+  subsets: ['latin', 'thai'], 
+});
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const currentUser = {
@@ -17,9 +21,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex flex-col min-h-screen">
       <Header user={currentUser}/> 
-      <div className="flex flex-row min-h-screen grow"> 
+      <div className="flex flex-row grow"> 
         <MySidebar/>
-        <main className="flex grow p-4 md:p-8 bg-gray-50">
+        <main className="flex grow p-4 md:p-8 bg-gray-50 ${sarabun.className}">
           {children}
         </main>
       </div>
@@ -49,7 +53,7 @@ function MySidebar() {
     return (
       <div className="flex flex-col w-64 justify-between border-e border-gray-100 bg-white">
         <div className="px-6 py-6">
-          <ul className="mt-2 space-y-1">
+          <ul className="space-y-1">
             <li className="px-4 pt-4 pb-2 border-b border-gray-200 mb-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-orange-500">
                     General

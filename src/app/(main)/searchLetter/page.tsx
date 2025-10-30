@@ -14,7 +14,9 @@ export default function DataPage() {
     const initialData = mockData; 
 
     return (
-<DataTable data={initialData} />
+      <>
+        <DataTable data={initialData} />
+      </>
     );
 }
 
